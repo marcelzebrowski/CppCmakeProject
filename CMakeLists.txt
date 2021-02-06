@@ -33,7 +33,7 @@ option(USE_GCOV "Create a GCov-enables build." OFF)
 option(ENABLE_BENCHMARKING "Enable Benchmarking" OFF)
 
 # Add external
-add_subdirectory(external)
+add_subdirectory(external/)
 
 # Configuration Files
 configure_file(${PROJECT_SOURCE_DIR}/include/${CONFIG_IN_H} ${PROJECT_BINARY_DIR}/${CONFIG_H} @ONLY)
@@ -64,13 +64,13 @@ if(GIT_FOUND AND EXISTS .git)
 endif()
 
 #libraries
-add_subdirectory(src)
+add_subdirectory(src/)
 
 #executeables
-add_subdirectory(app)
+add_subdirectory(app/)
 
-add_subdirectory(tests)
+add_subdirectory(tests/)
 
 if(ENABLE_BENCHMARKING)
-	add_subdirectory(benchmarks)
+	add_subdirectory(benchmarks/)
 endif()
