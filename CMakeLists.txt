@@ -32,8 +32,7 @@ option(USE_GCOV "Create a GCov-enables build." OFF)
 
 option(ENABLE_BENCHMARKING "Enable Benchmarking" OFF)
 
-# Add external
-add_subdirectory(external/)
+
 
 # Configuration Files
 configure_file(${PROJECT_SOURCE_DIR}/include/${CONFIG_IN_H} ${PROJECT_BINARY_DIR}/${CONFIG_H} @ONLY)
@@ -56,12 +55,17 @@ endif()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+find_package(Git QUIET)
+
 if(GIT_FOUND AND EXISTS .git)
     message(STATUS "Submodule update")
     execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
                     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                     RESULT_VARIABLE GIT_SUBMOD_RESULT)
 endif()
+
+# Add external
+add_subdirectory(external/)
 
 #libraries
 add_subdirectory(src/)
