@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 
-set(PROJECT "BenchmarkAndLogging")
+set(PROJECT "CppCmakeProject")
 set(CONFIG_H "ProjectConfig.h")
 set(CONFIG_IN_H "ProjectConfig.h.in")
 
