@@ -1,0 +1,36 @@
+name: Windows CI Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: setup
+      run: |
+        make setup
+    - name: prepare
+      run: |
+        make prepare
+    - name: configure
+      run: |
+        cmake . -Bbuild
+    - name: build
+      run: |
+        cmake --build build --config Debug -j4
+    - name: test
+      run: |
+        cd build
+        ctest --build-config Debug
