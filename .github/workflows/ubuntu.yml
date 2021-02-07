@@ -36,6 +36,6 @@ jobs:
     - name: test
       run: |
         cd build
-        make CppCmakeProject_Executable
+        make
     - name: collect code coverage
       run: bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
